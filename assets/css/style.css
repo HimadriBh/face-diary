@@ -44,3 +44,30 @@ button{
   margin: 1rem;
   cursor: pointer;
 }
+/* navbar styles */
+header{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 1rem;
+  border-bottom: 1px solid lightgrey;
+}
+header h1{
+  color:#f1356d;
+  letter-spacing: 0.5px;
+
+}
+header nav{
+  margin-left: auto;
+
+}
+header nav ul{
+  list-style: none;
+}
+#navigation li a{
+  display: inline-block;
+  color: grey;
+  margin: 0 1rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
