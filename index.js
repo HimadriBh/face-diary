@@ -5,6 +5,9 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
+// initialize .env flie
+require('dotenv').config();
+
 // setup cookirParser
 app.use(cookieParser());
 
