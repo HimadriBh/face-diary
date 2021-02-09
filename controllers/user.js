@@ -4,9 +4,10 @@ const userSignIn = (req, res) => {
   res.render('login')
 }
 const userSignUp = (req, res) => {
-  console.log(req.cookies)
-  res.cookie('user_id', 67)
   res.render('register')
+}
+const userProfile = (req, res) => {
+  res.render('profile')
 }
 
 const createUser = (req, res) => {
@@ -26,9 +27,14 @@ const createUser = (req, res) => {
   .catch(err => {console.log('Error in signing up user', err); return})
 }
 
+const createSession = (req, res) => {
+  res.redirect('/users/profile')
+}
 
 module.exports = {
   userSignIn,
   userSignUp,
-  createUser
+  createUser,
+  createSession,
+  userProfile
 }
