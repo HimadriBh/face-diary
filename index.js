@@ -8,6 +8,9 @@ const app = express();
 // initialize .env flie
 require('dotenv').config();
 
+// setup express to recognize incoming requests
+app.use(express.urlencoded({extended: false}))
+
 // setup cookirParser
 app.use(cookieParser());
 
