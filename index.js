@@ -1,6 +1,8 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const path = require('path');
@@ -22,6 +24,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 
 // setup passport for authentication
+// mongo store to store the session cookie in database
 app.use(session({
   name: 'User-app',
   // TODO  change secret before deployemnt
@@ -30,7 +33,15 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     maxAge: (1000 * 60 * 100)
-  }
+  },
+  store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      autoRemove: 'disabled'
+  },
+    function(err){
+      console.log(err || 'connect-mongodb setup ok')
+    }
+  )
 }))
 // check url
 app.use(function(req, res, next){
@@ -41,6 +52,9 @@ app.use(function(req, res, next){
 app.use(passport.initialize());
 app.use(passport.session())
 
+// set authenticated user in locals with each request
+app.use(passportLocal.setAuthenticatedUser);
+
 // setup static assets
 app.use(express.static("assets"))
 
@@ -50,6 +64,8 @@ connectDB();
 
 // user router
 app.use('/users', require('./routes/user'))
+
+app.use('/', require('./routes/home'))
 
 app.listen(PORT, function(err){
   if(err) console.log(err);

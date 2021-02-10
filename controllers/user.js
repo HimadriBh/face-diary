@@ -1,9 +1,15 @@
 const User = require('../models/User')
 
 const userSignIn = (req, res) => {
+  if(req.isAuthenticated()){
+    return res.redirect('/users/profile')
+  }
   res.render('login')
 }
 const userSignUp = (req, res) => {
+  if(req.isAuthenticated()){
+    return res.redirect('/users/profile')
+  }
   res.render('register')
 }
 const userProfile = (req, res) => {
@@ -31,10 +37,16 @@ const createSession = (req, res) => {
   res.redirect('/users/profile')
 }
 
+const destroySession = (req, res) => {
+  req.logout();
+  return res.redirect('/')
+}
+
 module.exports = {
   userSignIn,
   userSignUp,
   createUser,
   createSession,
-  userProfile
+  userProfile,
+  destroySession
 }

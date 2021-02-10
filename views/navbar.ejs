@@ -2,12 +2,21 @@
   <h1>Codiel</h1>
   <nav id="navigation">
     <ul>
-      <li><a href="/home">Home</a></li>
-      <li><a href="/contacts">Contacts</a></li>
-      <li><a href="/users/logout">Logout</a></li>
+      <% if(locals.user) { %>
       <li id="avatar">
-        <h3>Name: <%=  %></h3>
+        <a href="#"><%= user.name  %></a>
       </li>
+      <li>
+        <a href="/users/logout">Logout</a>
+      </li>
+      <% } else {%>
+        <li>
+          <a href="/users/login">Sign Up</a>
+        </li>
+        <li>
+          <a href="/users/register">Sign In</a>
+        </li>
+        <% } %>
     </ul>
   </nav>
 </header>

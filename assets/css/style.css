@@ -6,6 +6,10 @@
 body{
   background-color: #eee;
 }
+#container{
+  width: 80%;
+  margin: 0 auto;
+}
 .form-container{
   background-color: #fff;
   width: 400px;
@@ -48,6 +52,7 @@ button{
 header{
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 0 auto;
   padding: 1rem;
   border-bottom: 1px solid lightgrey;
@@ -63,6 +68,7 @@ header nav{
 }
 header nav ul{
   list-style: none;
+  display: flex;
 }
 #navigation li a{
   display: inline-block;
@@ -70,4 +76,7 @@ header nav ul{
   margin: 0 1rem;
   font-size: 1.2rem;
   text-decoration: none;
+}
+#navigation li a:hover{
+  color:#f1356d;
 }
