@@ -4,17 +4,17 @@
     <ul>
       <% if(locals.user) { %>
       <li id="avatar">
-        <a href="#"><%= user.name  %></a>
+        <a href="/users/profile"><%= user.name  %></a>
       </li>
       <li>
         <a href="/users/logout">Logout</a>
       </li>
       <% } else {%>
         <li>
-          <a href="/users/login">Sign Up</a>
+          <a href="/users/login">Sign In</a>
         </li>
         <li>
-          <a href="/users/register">Sign In</a>
+          <a href="/users/register">Sign Up</a>
         </li>
         <% } %>
     </ul>
