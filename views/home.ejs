@@ -2,9 +2,26 @@
 <%- include('navbar') %>
 <section id="feed-posts">
   <h4>Posts</h4>
-  <form action="" id="new-post-form" method="POST">
+  <% if(locals.user){%>
+  <form action="/posts/create" id="new-post-form" method="POST">
     <textarea name="content" cols="30" row="3"></textarea>
     <input type="submit" value="POST">
   </form>
+  <% } %>
+  <% if(posts.length  != 0 ){ %>
+    <div class="posts">
+      <% posts.forEach(function(post) { %>
+        <div class="post-item">
+          <h3 class="post-content"><%= post.content %></h3>
+          <p class="post-date"><span><%= post.user.name %></span><%= post.createdAt.toDateString() %> </p>
+          <div class="post-options">
+            <p><span><i class="fas fa-thumbs-up"></i></span> Like</p>
+            <p><span><i class="fas fa-comment"></i></span>Comment</p>
+            <p><span><i class="fas fa-share"></i></span>Share</p>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+  <% } %>
 </section>
 <%- include('./partials/footer') %>

@@ -80,3 +80,85 @@ header nav ul{
 #navigation li a:hover{
   color:#f1356d;
 }
+// posts styles
+#feed-posts{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  h4{
+    color: #f1356d;
+    font-size: 1.2rem;
+  }
+  input[type=submit]{
+    border: 2px solid lightgrey;
+    background-color: #f1356d;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  #new-post-form{
+    display: flex;
+    align-items: center;
+  }
+  #new-post-form textarea{
+    border: none;
+    border-bottom: 2px solid #ddd;
+    height: 50px;
+    background-color: #ddd;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+  }
+  #new-post-form textarea:focus{
+    outline: none;
+  }
+}
+// posts styles
+.posts{
+  display: flex;
+  flex-direction: column;
+
+  .post-item{
+    width: 450px;
+    margin: 0.5rem 0px;
+    padding: 0.8rem 0.5rem 0px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+    background-color: #fff;
+    border-radius: 4px;
+    .post-content{
+      color:#f1356d;
+      padding: 0.5rem;
+    }
+    .post-date{
+      font-size: 0.9rem;
+      color: #555;
+      padding: 0.5rem;
+      span{
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  .post-options{
+    border-top: 1px solid #ddd;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    p{
+      color: #f1356d;
+      font-size: 1rem;
+      padding: 0.5rem 2rem;
+      font-weight: bold;
+      &:hover{
+        background-color: #ddd;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    }
+    span{
+      display: inline-block;
+      margin: 0.5rem;
+    }
+  }
+}

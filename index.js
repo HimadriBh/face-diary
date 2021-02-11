@@ -76,6 +76,7 @@ connectDB();
 app.use('/users', require('./routes/user'))
 
 app.use('/', require('./routes/home'))
+app.use('/posts', require('./routes/posts'));
 
 app.listen(PORT, function(err){
   if(err) console.log(err);
