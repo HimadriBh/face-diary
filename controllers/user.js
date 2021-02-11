@@ -34,7 +34,7 @@ const createUser = (req, res) => {
 }
 
 const createSession = (req, res) => {
-  res.redirect('/users/profile')
+  res.redirect('/')
 }
 
 const destroySession = (req, res) => {

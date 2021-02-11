@@ -1,7 +1,10 @@
 <%- include('./partials/header') %>
 <%- include('navbar') %>
-<div id="profile-container">
-  <h3>Name: <%=  %></h3>
-  <p>Email: <%=  %></p>
-</div>
+<section id="feed-posts">
+  <h4>Posts</h4>
+  <form action="" id="new-post-form" method="POST">
+    <textarea name="content" cols="30" row="3"></textarea>
+    <input type="submit" value="POST">
+  </form>
+</section>
 <%- include('./partials/footer') %>
