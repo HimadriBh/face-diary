@@ -140,6 +140,7 @@ header nav ul{
   }
   .post-options{
     border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     margin-top: 0.5rem;
     padding: 0.3rem 0px;
     display: flex;
@@ -159,6 +160,21 @@ header nav ul{
     span{
       display: inline-block;
       margin: 0.5rem;
+    }
+  }
+  .post-comments{
+    padding: 0.3rem 0px;
+    display: flex;
+    flex-direction: column;
+    .new-comment-form{
+      display: flex;
+      input[type=text]{
+        border: 1px solid lightgrey;
+        background-color: #ddd;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        width: 100%;
+      }
     }
   }
 }

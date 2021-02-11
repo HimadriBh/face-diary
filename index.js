@@ -55,7 +55,7 @@ app.use(session({
 }))
 // check url
 app.use(function(req, res, next){
-  console.log(req.url);
+  console.log(req.url, req.method);
   next();
 })
 
@@ -77,6 +77,7 @@ app.use('/users', require('./routes/user'))
 
 app.use('/', require('./routes/home'))
 app.use('/posts', require('./routes/posts'));
+app.use('/comments', require('./routes/comments'));
 
 app.listen(PORT, function(err){
   if(err) console.log(err);

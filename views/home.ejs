@@ -19,6 +19,22 @@
             <p><span><i class="fas fa-comment"></i></span>Comment</p>
             <p><span><i class="fas fa-share"></i></span>Share</p>
           </div>
+          <div class="post-comments">
+            <% if(locals.user){%>
+            <form class="new-comment-form" action="/comments/create" method="POST">
+              <input type="text" name="content" id="" placeholder="Write a comment...">
+              <input type="hidden" name="post" value="<%= post._id %>">
+            </form>
+            <% } %>
+            <% if(post.comments.length != 0) {%>
+              <% post.comments.forEach(function(comment){ %>
+              <div class="post-comment-item">
+                <h4><%= comment  %></h4>
+                <p><%= comment.content  %></p>
+              </div>
+                <% }) %>
+            <% } %>
+          </div>
         </div>
         <% }) %>
     </div>
