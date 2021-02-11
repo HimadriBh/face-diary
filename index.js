@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
+var sassMiddleware = require('node-sass-middleware')
 const passportLocal = require('./config/passport-local-strategy');
 const path = require('path');
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,15 @@ const app = express();
 
 // initialize .env flie
 require('dotenv').config();
+
+// setup sass middleware
+app.use(sassMiddleware({
+  src: 'assets/scss',
+  dest: 'assets/css',
+  debug: true,
+  outputStyle: 'extended',
+  prefix: '/css'
+}))
 
 // setup express to recognize incoming requests
 app.use(express.urlencoded({extended: false}))
