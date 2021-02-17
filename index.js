@@ -7,6 +7,7 @@ const passport = require('passport');
 var sassMiddleware = require('node-sass-middleware')
 const passportLocal = require('./config/passport-local-strategy');
 const path = require('path');
+const flash = require('connect-flash');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -53,7 +54,11 @@ app.use(session({
     }
   )
 }))
-// check url
+// setup to show flash messages
+app.use(flash());
+app.use(require('./config/middleware').setFlash);
+
+// check and print url with method
 app.use(function(req, res, next){
   console.log(req.url, req.method);
   next();

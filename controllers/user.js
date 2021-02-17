@@ -3,8 +3,9 @@ const User = require('../models/User')
 const userSignIn = (req, res) => {
   if(req.isAuthenticated()){
     return res.redirect('/users/profile')
+  }else{
+    res.render('login');
   }
-  res.render('login')
 }
 const userSignUp = (req, res) => {
   if(req.isAuthenticated()){
@@ -43,11 +44,13 @@ const createUser = (req, res) => {
 }
 
 const createSession = (req, res) => {
+  req.flash('success', 'Logged in successfully');
   res.redirect('/')
 }
 
 const destroySession = (req, res) => {
   req.logout();
+  req.flash('success', 'You are Logged out!');
   return res.redirect('/')
 }
 

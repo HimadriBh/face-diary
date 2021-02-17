@@ -1,0 +1,21 @@
+.flash-success{
+  background-color: lightgreen;
+}
+.flash-error{
+  background-color: hotpink;
+}
+.messages{
+  opacity: 1;
+  animation: fade 3s ease-in-out forwards;
+  animation-iteration-count: 1;
+  box-shadow: 1px 2px 3px rgba(0,0,0, 0.2);
+  padding: 0.5rem;
+  position: absolute;
+  right: 20%;
+  top: 3rem;
+}
+
+@keyframes fade {
+  0%,100% { opacity: 0 }
+  20% { opacity: 1 }
+}
