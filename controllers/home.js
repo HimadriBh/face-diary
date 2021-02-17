@@ -5,6 +5,7 @@ const home = async (req, res) => {
   // show all the posts of logged in user
   try {
     let posts = await Post.find({})
+      .sort('-createdAt')
       .populate('user')
       .populate({
         path: 'comments',

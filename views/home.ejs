@@ -11,13 +11,13 @@
     </form>
     <% } %>
     <% if(posts.length  != 0 ){ %>
-      <div class="posts">
+      <div class="posts" id='post-list-container'>
         <% posts.forEach(function(post) { %>
-          <div class="post-item">
+          <div class="post-item" id="post-<%= post._id %>">
             <h3 class="post-content">
               <%= post.content %>
               <% if((locals.user) && (locals.user.id == post.user.id)){ %>
-            <small style="position: relative;left: 20rem;"><a href="/posts/destroy/<%= post.id %>"><i class="fas fa-trash-alt"></i></a></small>
+            <small style="position: relative;left: 20rem;"><a class="delete-post-button" href="/posts/destroy/<%= post.id %>"><i class="fas fa-trash-alt"></i></a></small>
             <% } %>
             </h3>
             <p class="post-date"><span><%= post.user.name %></span><%= post.createdAt.toDateString() %> </p>
@@ -63,4 +63,5 @@
     <% } %>
   </section>
 </div>
+<script src="/js/home_posts.js"></script>
 <%- include('./partials/footer') %>
