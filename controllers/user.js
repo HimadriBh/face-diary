@@ -13,7 +13,16 @@ const userSignUp = (req, res) => {
   res.render('register')
 }
 const userProfile = (req, res) => {
-  res.render('profile')
+  User.findById(req.params.id)
+  .then(user => {
+    res.render('profile', {
+      title: 'User profile',
+      profile_user: user
+    })
+  })
+  .catch(err => {
+    return res.redirect('back')
+  })
 }
 
 const createUser = (req, res) => {
@@ -42,11 +51,23 @@ const destroySession = (req, res) => {
   return res.redirect('/')
 }
 
+const update = (req, res) => {
+  if(req.user.id == req.params.id){
+    User.findByIdAndUpdate(req.params.id, req.body)
+      .then(user => {
+        return res.redirect('back')
+      })
+  } else {
+    res.status(401).send('Unauthorized!');
+  }
+}
+
 module.exports = {
   userSignIn,
   userSignUp,
   createUser,
   createSession,
   userProfile,
-  destroySession
+  destroySession,
+  update
 }

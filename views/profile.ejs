@@ -1,7 +1,16 @@
 <%- include('./partials/header') %>
 <%- include('navbar') %>
-<div id="profile-container">
-  <h3>Name: <%=  %></h3>
-  <p>Email: <%=  %></p>
+<% if(user.id == profile_user.id){ %>
+  <!-- if user matches then show the form -->
+  <form action="/users/profile/<%= profile_user.id %>" method="POST">
+    <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name%>" required>
+    <input type="email" name="email" placeholder="Your Email" value="<%= profile_user.email%>" required>
+    <input type="submit" value="Submit">
+  </form>
+<% } else { %>
+  <div id="profile-container">
+  <h3>Name: <%= profile_user.name %></h3>
+  <p>Email: <%= profile_user.email %></p>
 </div>
+<% } %>
 <%- include('./partials/footer') %>

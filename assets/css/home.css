@@ -1,0 +1,20 @@
+#home-container {
+  display: flex; }
+  #home-container #feed-posts {
+    width: 70%;
+    padding: 10px; }
+  #home-container #user-friends {
+    width: 30%;
+    padding: 10px;
+    border-left: 1px solid lightgrey;
+    height: 100%; }
+    #home-container #user-friends h3 {
+      color: #f1356d;
+      padding-left: 10px; }
+    #home-container #user-friends p {
+      padding: 10px;
+      padding-top: 0; }
+      #home-container #user-friends p a {
+        color: #555; }
+        #home-container #user-friends p a:hover {
+          color: #f1356d; }

@@ -156,3 +156,5 @@ header nav ul {
         border-radius: 20px;
         font-size: 0.9rem;
         width: 100%; }
+    .posts .post-comments .post-comment-list {
+      padding: 0.5rem; }

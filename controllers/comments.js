@@ -22,6 +22,27 @@ const create = (req, res) => {
     res.redirect('/');
   })
 }
+
+const destroy = (req, res) => {
+
+  Comment.findById(req.params.id)
+  .then(comment => {
+    if(comment.user == req.user.id){
+      let postId = comment.post;
+
+      comment.remove();
+
+      Post.findByIdAndUpdate(postId, { $pull: req.params.id })
+        .then(post => {
+          res.redirect('back');
+        })
+    }
+  })
+  .catch(err => {
+    return res.redirect('back');
+  })
+}
 module.exports = {
-  create
+  create,
+  destroy
 }

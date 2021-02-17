@@ -1,0 +1,28 @@
+#home-container{
+  display: flex;
+
+  #feed-posts{
+    width: 70%;
+    padding: 10px;
+  }
+  #user-friends{
+    width: 30%;
+    padding: 10px;
+    border-left: 1px solid lightgrey;
+    height: 100%;
+    h3{
+      color: #f1356d;
+      padding-left: 10px;
+    }
+    p{
+      padding: 10px;
+      padding-top: 0;
+      a{
+        color: #555;
+        &:hover{
+          color: #f1356d;
+        }
+      }
+    }
+  }
+}
