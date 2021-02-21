@@ -19,3 +19,13 @@
     opacity: 0; }
   20% {
     opacity: 1; } }
+
+#navigation ul li {
+  align-self: center; }
+
+#navigation #avatar {
+  display: flex;
+  align-items: center; }
+  #navigation #avatar img {
+    border-radius: 50%;
+    width: 45px; }

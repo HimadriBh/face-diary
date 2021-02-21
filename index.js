@@ -83,6 +83,8 @@ app.use('/users', require('./routes/user'))
 app.use('/', require('./routes/home'))
 app.use('/posts', require('./routes/posts'));
 app.use('/comments', require('./routes/comments'));
+// uploads available to the browser
+app.use('/uploads', express.static(__dirname + '/uploads'))
 
 app.listen(PORT, function(err){
   if(err) console.log(err);

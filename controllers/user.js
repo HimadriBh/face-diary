@@ -1,4 +1,6 @@
 const User = require('../models/User')
+const fs = require('fs');
+const path = require('path');
 
 const userSignIn = (req, res) => {
   if(req.isAuthenticated()){
@@ -54,12 +56,32 @@ const destroySession = (req, res) => {
   return res.redirect('/')
 }
 
-const update = (req, res) => {
+const update = async (req, res) => {
   if(req.user.id == req.params.id){
-    User.findByIdAndUpdate(req.params.id, req.body)
-      .then(user => {
-        return res.redirect('back')
+    try {
+      let user = await User.findById(req.params.id)
+      User.uploadedAvatar(req, res, function(err){
+        if(err){ console.log("####Multer Error####", err) }
+
+        user.name = req.body.name;
+        user.email = req.body.email;
+
+        if(req.file){
+
+          if(user.avatar && fs.existsSync(path.join(__dirname, '..', user.avatar))){
+            fs.unlinkSync(path.join(__dirname, '..', user.avatar))
+          }
+          // saving the path of the uploaded file into avatar field
+          user.avatar = User.avatarPath + '/' + req.file.filename;
+        }
+        user.save();
+        req.flash('success', 'User updated successfully!');
+        return res.redirect('back');
+
       })
+    } catch (error) {
+      return res.redirect('back')
+    }
   } else {
     res.status(401).send('Unauthorized!');
   }

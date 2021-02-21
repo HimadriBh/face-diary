@@ -4,7 +4,6 @@
     let newPostForm = $('#new-post-form');
     newPostForm.submit(function(e){
       e.preventDefault();
-
       $.ajax({
         type: 'post',
         url: '/posts/create',
@@ -12,11 +11,13 @@
         success: function(data){
           let newPost = newPostDom(data.data.post)
           $('#post-list-container').prepend(newPost);
+          deletePost($(' .delete-post-button', newPost));
         },
         error: function(err) {
-          console.log(err.responseText())
+          console.log(err.responseText)
         }
       });
+      this.reset();
     })
   }
   // add post to the DOM
@@ -24,7 +25,7 @@
     return $(`<div class="post-item" id="post-${post._id}">
             <h3 class="post-content">
               ${post.content}
-            <p style="position: relative;left: 20rem;"><a class="delete-post-button" href="/posts/destroy/${post.id}"><i class="fas fa-trash-alt"></i></a></p>
+            <p style="position: relative;left: 20rem;"><a class="delete-post-button" href="/posts/destroy/${post._id}"><i class="fas fa-trash-alt"></i></a></p>
             </h3>
             <p class="post-date"><span>${post.user.name}</span>${post.createdAt} </p>
             <div class="post-options">
@@ -45,5 +46,23 @@
             </div>
           </div>`)
   }
+
+  let deletePost = function(deleteLink){
+    $(deleteLink).click(function(e){
+      e.preventDefault();
+
+      $.ajax({
+        type: 'GET',
+        url: $(deleteLink).prop('href'),
+        success: function(data){
+          $(`#post-${data.data.post_id}`).remove();
+        },
+        error: function(err){
+          console.log(err.responseText)
+        }
+      })
+    })
+  }
+
   createPost();
 }

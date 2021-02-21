@@ -4,6 +4,7 @@
     <ul>
       <% if(locals.user) { %>
       <li id="avatar">
+        <img src="<%= user.avatar %>" alt="<%= user.name %>">
         <a href="/users/profile/<%= user.id %>"><%= user.name  %></a>
       </li>
       <li>

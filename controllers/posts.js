@@ -32,6 +32,16 @@ const destroy = async (req, res) => {
         post.remove();
 
         await Comment.deleteMany({ post: req.params.id });
+
+        if(req.xhr){
+          return res.status(200).json({
+            data: {
+              post_id: req.params.id
+            },
+            message: "Post deleted!"
+          })
+        }
+
         req.flash('success', 'Post deleted!');
         return res.redirect('back');
       }else{
