@@ -7,6 +7,7 @@ const passport = require('passport');
 const passportGoogle = require('./config/passport-google-oauth-strategy');
 var sassMiddleware = require('node-sass-middleware')
 const passportLocal = require('./config/passport-local-strategy');
+const passportJWT = require('./config/passport-jwt-strategy');
 const path = require('path');
 const flash = require('connect-flash');
 const PORT = process.env.PORT || 3000;
@@ -86,7 +87,7 @@ app.use('/posts', require('./routes/posts'));
 app.use('/comments', require('./routes/comments'));
 // uploads available to the browser
 app.use('/uploads', express.static(__dirname + '/uploads'))
-
+app.use('/api', require('./routes/api'));
 app.listen(PORT, function(err){
   if(err) console.log(err);
   console.log('Server runniing on at http://localhost:' + PORT)
