@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
+const passportGoogle = require('./config/passport-google-oauth-strategy');
 var sassMiddleware = require('node-sass-middleware')
 const passportLocal = require('./config/passport-local-strategy');
 const path = require('path');
