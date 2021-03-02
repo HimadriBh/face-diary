@@ -38,11 +38,6 @@
                 <input type="text" name="content" id="" placeholder="Write a comment..." required >
                 <input type="hidden" name="post" value="${post._id}">
               </form>
-                <div class="post-comment-list">
-                  <ul id="post-comments-${post._id}">
-
-                  </ul>
-                </div>
             </div>
           </div>`)
   }
@@ -55,7 +50,7 @@
         type: 'GET',
         url: $(deleteLink).prop('href'),
         success: function(data){
-          $(`#post-${data.data.post_id}`).remove();
+          $(`#comment-${data.data.post_id}`).remove();
         },
         error: function(err){
           console.log(err.responseText)

@@ -10,7 +10,7 @@ const passportLocal = require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
 const path = require('path');
 const flash = require('connect-flash');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 
@@ -88,7 +88,14 @@ app.use('/comments', require('./routes/comments'));
 // uploads available to the browser
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use('/api', require('./routes/api'));
-app.listen(PORT, function(err){
+const serverApp = app.listen(PORT, function(err){
   if(err) console.log(err);
   console.log('Server runniing on at http://localhost:' + PORT)
 })
+
+
+// setup the chat server using socket.io
+const chatServer = require('http').Server(app);
+const chatSockets = require('./config/chat_sokets').chatSockets(chatServer);
+chatServer.listen(5000);
+// console.log('chat server is listening on port 5000')

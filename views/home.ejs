@@ -1,6 +1,7 @@
 <%- include('./partials/header') %>
 <%- include('navbar') %>
 <link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/chatbox.css">
 <div id="home-container">
   <section id="feed-posts">
     <h4>Posts</h4>
@@ -34,17 +35,17 @@
               </form>
               <% } %>
               <% if(post.comments.length != 0) {%>
-                <div class="post-comment-list">
+                <ul class="post-comment-list" id='post-comments-<%= post._id %>'>
                   <% post.comments.forEach(function(comment){ %>
-                  <div class="post-comment-item">
+                  <div class="post-comment-item" id='comment-<%= comment.id %>'>
                      <% if((locals.user) && (locals.user.id == comment.user.id)){ %>
-                      <small style="position: relative;left: 20rem;"><a href="/comments/destroy/<%= comment.id %>"><i class="fas fa-trash-alt"></i></a></small>
+                      <small style="position: relative;left: 20rem;"><a class='delete-comment-button' href="/comments/destroy/<%= comment.id %>"><i class="fas fa-trash-alt"></i></a></small>
                       <% } %>
                     <p><%= comment.content  %></p>
                     <small>
                       <%= comment.user.name %>
                     </small>
-                  </div>
+                  </ul>
                   <br>
                     <% }) %>
                 </div>
@@ -62,6 +63,15 @@
       <p><a href="/users/profile/<%= u.id %>"><%= u.name %></a></p>
     <% } %>
   </section>
+  <%- include('_chat_box') -%>
 </div>
 <script src="/js/home_posts.js"></script>
+<script src="/js/home_comments.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.min.js" integrity="sha512-fANg+hKlIqBdTzgYBT8eFIlZgKYTLij0S7Afvda/rw/Rm33I9+74HSdR1Urz2zGgCSZiQweMin46+l1obnoLWQ==" crossorigin="anonymous"></script>
+<script src="/js/chat_engine.js"></script>
+<% if(locals.user){ %>
+<script>
+  new ChatEngine('user-chat-box', '<%= locals.user.email %>')
+</script>
+<% } %>
 <%- include('./partials/footer') %>
